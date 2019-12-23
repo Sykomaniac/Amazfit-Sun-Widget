@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Sun Widget</string>
+    <string name="main_activity_content">You can use these settings to force update your location and/or recalculate sunrise and sunset times</string>
+    <string name="settings">Settings</string>
+    <string name="api_authority">sykomaniac</string>
+
+    <string name="set_loc">Update Location</string>
+    <string name="set_loc_c">Fetch new location co-ordinates</string>
+    <string name="set_refresh">Refresh Times</string>
+    <string name="set_refresh_c">Force recalculation of sun times</string>
+    <string name="set_force_refresh">Always Refresh</string>
+    <string name="set_force_refresh_c">Always fetch co-ordinates when calculating updated sun times</string>
+
+    <string name="location_refresh_failure">Couldn\'t fetch updated location. Try setting via Location app first</string>
+    <string name="location_refresh_success">Location successfully refreshed</string>
+    <string name="location_refresh">Refreshing location</string>
+    <string name="refresh_time">Refreshing times</string>
+    <string name="refresh_time_success">New times successfully calculated</string>
+    <string name="refresh_time_failure">Failed to calculate new times!</string>
+
+    <string name="sunset_time">N/A</string>
+    <string name="sunrise_time">N/A</string>
+    <string name="update_time">No data available. Please use settings to update location and/or sun times</string>
+</resources>
