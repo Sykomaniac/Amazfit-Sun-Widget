@@ -1,4 +1,4 @@
-![Downloads](https://img.shields.io/github/downloads/sykomaniac/Amazfit-Sun-Widget/v1.0/total?style=flat-square)
+![Downloads](https://img.shields.io/github/downloads/Sykomaniac/Amazfit-Sun-Widget/v1.0/total?style=flat-square)
 
 # Amazfit Sun Widget
 
