@@ -1,0 +1,6 @@
+<resources>
+    <item name="dawn_dusk_switch_id" type="id"/>
+    <item name="astronomical_switch_id" type="id"/>
+    <item name="civil_switch_id" type="id"/>
+    <item name="nautical_switch_id" type="id"/>
+</resources>

@@ -2,6 +2,7 @@ package com.sykomaniac.sunwidget.settings;
 
 import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
@@ -57,6 +58,13 @@ public class SettingsActivity extends AppCompatActivity {
                             .apply();
                     displayMessage(mContext.getString(R.string.location_refresh_success));
                 }
+            }
+        }));
+
+        settings.add(new IconSetting(getDrawable(R.drawable.method_type), getString(R.string.set_widget_type), getString(R.string.set_widget_type_c), new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingsActivity.this, TypeActivity.class));
             }
         }));
 

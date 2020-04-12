@@ -3,15 +3,22 @@ package com.sykomaniac.sunwidget.settings;
 import android.graphics.drawable.Drawable;
 import android.widget.CompoundButton;
 
-public class SwitchSetting extends BaseSetting {
+public class RadioSetting extends BaseSetting {
 
+    int id;
     boolean isChecked;
+
+    public void setChangeListener(CompoundButton.OnCheckedChangeListener changeListener) {
+        this.changeListener = changeListener;
+    }
+
     CompoundButton.OnCheckedChangeListener changeListener;
     String title;
     String subtitle;
     Drawable icon;
 
-    public SwitchSetting( Drawable icon, String title, String subtitle, CompoundButton.OnCheckedChangeListener changeListener, boolean isChecked) {
+    public RadioSetting(int id, Drawable icon, String title, String subtitle, CompoundButton.OnCheckedChangeListener changeListener, boolean isChecked) {
+        this.id = id;
         this.changeListener = changeListener;
         this.isChecked = isChecked;
         this.title = title;

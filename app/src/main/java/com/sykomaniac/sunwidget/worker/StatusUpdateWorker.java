@@ -12,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import static ca.rmen.sunrisesunset.SunriseSunset.getAstronomicalTwilight;
+import static ca.rmen.sunrisesunset.SunriseSunset.getCivilTwilight;
+import static ca.rmen.sunrisesunset.SunriseSunset.getNauticalTwilight;
 import static ca.rmen.sunrisesunset.SunriseSunset.getSunriseSunset;
 import static com.sykomaniac.sunwidget.Constants.CONFIGURATION_PREFERENCE_FILE_NAME;
 
@@ -36,17 +39,29 @@ public class StatusUpdateWorker extends Worker {
         SharedPreferences sharedPreferences =
                 mContext.getSharedPreferences(CONFIGURATION_PREFERENCE_FILE_NAME, Context.MODE_PRIVATE);
 
-        float latitude = sharedPreferences.getFloat("latitude", -1);
-        float longitude = sharedPreferences.getFloat("longitude", -1);
+        final String type = sharedPreferences.getString("widget_type_pref", "Dawn");
+        final float latitude = sharedPreferences.getFloat("latitude", -1);
+        final float longitude = sharedPreferences.getFloat("longitude", -1);
 
         if (latitude == -1 || longitude == -1) {
             return Result.failure();
         }
 
-        Calendar[] sunriseSunset = getSunriseSunset(Calendar.getInstance(), latitude, longitude);
+        Calendar[] sunriseSunset;
+        switch (type.toUpperCase()) {
+            case "ASTRONOMICAL":
+                sunriseSunset = getAstronomicalTwilight(Calendar.getInstance(), latitude, longitude);
+                break;
+            case "CIVIL":
+                sunriseSunset = getCivilTwilight(Calendar.getInstance(), latitude, longitude);
+                break;
+            case "NAUTICAL":
+                sunriseSunset = getNauticalTwilight(Calendar.getInstance(), latitude, longitude);
+                break;
+            default:
+                sunriseSunset = getSunriseSunset(Calendar.getInstance(), latitude, longitude);
+        }
 
-        // Time is is UTC
-        // TODO: should this be local?
         String sunrise = dateToTimeString(sunriseSunset[0]);
         String sunset = dateToTimeString(sunriseSunset[1]);
         String updated = dateToString(Calendar.getInstance());
@@ -55,6 +70,7 @@ public class StatusUpdateWorker extends Worker {
         sharedPreferences.edit()
                 .putString("sunUp", sunrise)
                 .putString("sunDown", sunset)
+                .putString("widgetType", type)
                 .putString("updated", updated)
                 .apply();
 

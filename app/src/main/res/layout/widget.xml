@@ -8,6 +8,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+        <com.sykomaniac.sunwidget.util.AlwaysMarqueeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="@string/widget_type"
+            android:textColor="@color/widget_text"
+            android:layout_gravity="top"
+            android:id="@+id/widgetType"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

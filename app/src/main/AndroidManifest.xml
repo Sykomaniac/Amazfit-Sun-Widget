@@ -25,6 +25,7 @@
         </activity>
 
         <activity android:name=".settings.SettingsActivity"></activity>
+        <activity android:name=".settings.TypeActivity"></activity>
 
         <receiver android:name=".broadcasts.BootDeviceReceiver" >
             <intent-filter>

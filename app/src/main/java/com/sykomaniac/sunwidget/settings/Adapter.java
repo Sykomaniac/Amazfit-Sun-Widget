@@ -36,6 +36,9 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         } else if (viewType == 2) {
             //Switch Item
             return new ViewHolder(layoutInflater.inflate(R.layout.item_preference_switch, parent, false));
+        } else if (viewType == 3) {
+            //Radio Switch Item
+            return new ViewHolder(layoutInflater.inflate(R.layout.item_preference_radio, parent, false));
         }
         return null;
     }
@@ -46,7 +49,8 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         BaseSetting setting = settings.get(position);
         if (setting instanceof HeaderSetting) return 0;
         if (setting instanceof IconSetting) return 1;
-        else return 2;
+        if (setting instanceof SwitchSetting) return 2;
+        else return 3;
     }
 
 
@@ -75,6 +79,29 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 //Setup subtitle if required
                 if (switchSetting.subtitle != null) {
                     holder.subtitle.setText(switchSetting.subtitle);
+                    holder.subtitle.setVisibility(View.VISIBLE);
+                } else {
+                    holder.subtitle.setText("");
+                    holder.subtitle.setVisibility(View.GONE);
+                }
+            } else if (setting instanceof RadioSetting) {
+                //Radio, setup the change listener and click listener for the root view
+                RadioSetting radioSetting = (RadioSetting) setting;
+                holder.sw.setId(radioSetting.id);
+                holder.sw.setOnCheckedChangeListener(radioSetting.changeListener);
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        holder.sw.toggle();
+                    }
+                });
+                //Set default check
+                holder.sw.setChecked(radioSetting.isChecked);
+                //Setup title
+                holder.title.setText(radioSetting.title);
+                //Setup subtitle if required
+                if (radioSetting.subtitle != null) {
+                    holder.subtitle.setText(radioSetting.subtitle);
                     holder.subtitle.setVisibility(View.VISIBLE);
                 } else {
                     holder.subtitle.setText("");

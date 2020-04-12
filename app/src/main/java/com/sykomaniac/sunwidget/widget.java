@@ -27,6 +27,7 @@ public class widget extends AbstractPlugin {
     private View mView;
     private TextView sunriseView;
     private TextView sunsetView;
+    private AlwaysMarqueeTextView widgetTypeView;
     private AlwaysMarqueeTextView updatedView;
 
     // Set up the widget's layout
@@ -46,6 +47,7 @@ public class widget extends AbstractPlugin {
     private void init() {
         sunriseView = this.mView.findViewById(R.id.sunrise);
         sunsetView = this.mView.findViewById(R.id.sunset);
+        widgetTypeView = this.mView.findViewById(R.id.widgetType);
         updatedView = this.mView.findViewById(R.id.updated);
     }
 
@@ -59,6 +61,7 @@ public class widget extends AbstractPlugin {
             SharedPreferenceAPIClient apiClient = new SharedPreferenceAPIClient(this.mContext, this.mContext.getString(R.string.api_authority));
             sunriseView.setText(apiClient.getString("sunUp", R.string.sunrise_time));
             sunsetView.setText(apiClient.getString("sunDown", R.string.sunset_time));
+            widgetTypeView.setText(apiClient.getString("widgetType", R.string.widget_type));
             updatedView.setText(apiClient.getString("updated", R.string.update_time));
         }
 
